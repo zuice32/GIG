@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 import {
   Container, Content, Form, Item, Label, Input, Icon, Button, Text, Toast, List, ListItem, Header,
 } from 'native-base';
+
+import { updateCoords, updateZip } from '../Storage/Location/Actions'
 
 export default class ZipForm extends Component {
   static navigationOptions = {
@@ -15,6 +19,7 @@ export default class ZipForm extends Component {
     this.onChangeText = this.onChangeText.bind(this);
     this.onEndEditing = this.onEndEditing.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.useGeolocation = this.useGeolocation.bind(this);
 
     this.state = {
       zip: '',
@@ -62,6 +67,15 @@ export default class ZipForm extends Component {
     }
   }
 
+  useGeolocation() {
+      this.props.navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.back({ routeName: 'Main' }),
+        ]
+      }));
+  }
+
   render() {
     const errorMessage = this.state.showError ? <Text style={styles.errorMessage}> (should be five numbers)</Text> : null;
     return (
@@ -81,7 +95,9 @@ export default class ZipForm extends Component {
                   />
               </Item>
               <Button block primary><Text>Use this zip code</Text></Button>
-              <Button block primary style={styles.locationAlternate}><Text>Use current location instead</Text></Button>
+              <Button block primary style={styles.locationAlternate} onPress={this.useGeolocation}>
+                <Text>Use current location instead</Text>
+            </Button>
           </Form>
         </Content>
       </Container>
@@ -96,4 +112,9 @@ const styles = StyleSheet.create({
   locationAlternate: {
     marginTop: 17,
   }
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateZipCode: zip => { dispatch(updateZip(zip)); },
+  updateLatLong: coords => { dispatch(updateCoords(coords)); },
 });
