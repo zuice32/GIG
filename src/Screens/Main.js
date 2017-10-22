@@ -39,7 +39,7 @@ export default class Main extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <Container>
+      <Container padder>
         <Content>
             <Radon {...this.state.data.radon} />
         </Content>
