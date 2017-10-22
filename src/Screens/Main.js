@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import {
-  Container, Text, Content, Spinner,
+  Container, Text, Content, Spinner, Drawer,
 } from 'native-base';
 
 import Location from '../Components/Location/Location';
@@ -37,14 +37,15 @@ export default class Main extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { navigate } = this.props.navigation;
     return (
       <Container padder>
-        <Content>
-            <Radon {...this.state.data.radon} />
-        </Content>
-        <Location locationUpdate={this.locationUpdate} navigate={navigate} />
-        <Footer />
+          <Content>
+              <Radon {...this.state.data.radon} />
+          </Content>
+          <Location locationUpdate={this.locationUpdate} navigate={navigate} />
+          <Footer openDrawer={this.props.screenProps.openDrawer} />
       </Container>
     );
   }

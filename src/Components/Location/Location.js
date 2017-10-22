@@ -27,7 +27,7 @@ export class Location extends Component {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
     });
-    this.props.updateZip('18847');
+    this.props.updateZipCode('18847');
   }
 
   render() {
