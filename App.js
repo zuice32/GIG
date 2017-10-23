@@ -19,7 +19,14 @@ const AppNavigator = StackNavigator({
   title: 'I am app',
 });
 
-const store = createStore(reducer);
+const store = createStore(reducer, {
+  location: {
+    zip: '18847',
+  },
+  radon: {
+    level: .8,
+  },
+});
 
 export default () => {
   const closeDrawer = () => {

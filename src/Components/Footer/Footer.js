@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import {
-  Footer, FooterTab, Button, Text, Icon,
+  Footer, FooterTab, Button, Text, Icon, Right,
 } from 'native-base';
 
 export default class AppFooter extends Component {
@@ -12,11 +12,11 @@ export default class AppFooter extends Component {
   render() {
       return (
         <Footer>
-          <FooterTab>
-              <Button className="socialButton" onPress={this.props.openDrawer}>
+          <Right>
+              <Button transparent onPress={this.props.openDrawer}>
                 <Icon name="menu" />
               </Button>
-          </FooterTab>
+          </Right>
         </Footer>
       );
   }
