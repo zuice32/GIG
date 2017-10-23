@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking } from 'react-native';
+import { Linking, StyleSheet } from 'react-native';
 import {
   Footer, FooterTab, Button, Text, Icon, Right,
 } from 'native-base';

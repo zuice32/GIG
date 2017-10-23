@@ -3,21 +3,11 @@ import { StyleSheet, ScrollView } from 'react-native';
 import {
   Container, Text, Content, Spinner, Drawer,
 } from 'native-base';
-import { TabNavigator } from 'react-navigation';
 
+import Tabs from '../Navigators/EnvironmentNavigator';
 
 import Location from '../Components/Location/Location';
-import Radon from '../Components/Environment/Radon/Radon';
-import Water from '../Components/Environment/Water/Water';
 import Footer from '../Components/Footer/Footer';
-
-const Tabs = TabNavigator({
-  EnvironmentRadon: { screen: Radon },
-  EnvironmentWater: { screen: Water },
-}, {
-  swipeEnabled: true,
-  animationEnabled: true,
-});
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -26,16 +16,17 @@ export default class Main extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    // <Radon {...this.state.data.radon} />
     return (
       <Container style={styles.container}>
-        <Tabs />
+        <Tabs navigation={this.props.navigation} />
         <Location navigate={navigate} />
         <Footer openDrawer={this.props.screenProps.openDrawer} />
       </Container>
     );
   }
 }
+
+Main.router = Tabs.router;
 
 const styles = StyleSheet.create({
   container: {

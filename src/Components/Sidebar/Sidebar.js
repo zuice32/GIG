@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Linking, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import {
   List, ListItem, Button, Text, Icon, Container, Content, Left, Body, Separator,
 } from 'native-base';
@@ -7,13 +9,24 @@ import {
 import Header from './Header';
 import Footer from './Footer';
 
-export default class AppFooter extends Component {
+export default class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.goToWater = this.goToWater.bind(this);
+  }
   handleClick = url => {
     Linking.openURL(url);
   }
 
+  goToWater = () => {
+    const navigateAction = NavigationActions.navigate({ routeName: 'Water' });
+    this.props.dispatch(navigateAction);
+  }
+
   render() {
-      return (
+    console.log('nav', this.props.nav);
+    // const { navigate } = this.props.navigation;
+    return (
         <Container style={styles.container} padded>
           <Content style={styles.content}>
             <Header />
@@ -31,7 +44,9 @@ export default class AppFooter extends Component {
                 <Text>Land</Text>
               </ListItem>
               <ListItem>
-                <Text>Water</Text>
+                <Button transparent onPress={this.goToWater}>
+                  <Text>Water</Text>
+                </Button>
               </ListItem>
               <ListItem>
                 <Text>Waste</Text>
@@ -81,11 +96,3 @@ const styles = StyleSheet.create({
   container: { zIndex: 10000 },
   content: { flex: 1, backgroundColor: "#fff" }
 });
-// <Button className="socialButton" onPress={() => this.handleClick('https://www.facebook.com/PennsylvaniaDEP/')}>
-// </Button>
-// <Button className="socialButton" onPress={() => this.handleClick('https://twitter.com/pennsylvaniadep')}>
-// </Button>
-// <Button className="socialButton" onPress={() => this.handleClick('https://www.instagram.com/pennsylvaniadep/')}>
-// </Button>
-// <Button className="socialButton" onPress={this.props.openDrawer}>
-// </Button>

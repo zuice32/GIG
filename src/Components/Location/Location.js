@@ -5,9 +5,9 @@ import { Location as LocationApi, Permissions } from 'expo';
 import ActionButton from 'react-native-action-button';
 import { Icon } from 'native-base';
 
-import { updateCoords, updateZip } from '../../Storage/Location/Actions'
+import { updateCoords, updateZip } from '../../Storage/Location/Actions';
 
-export class Location extends Component {
+export default class Location extends Component {
   constructor(props) {
     super(props);
 
@@ -52,10 +52,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-const mapDispatchToProps = dispatch => ({
-  updateZipCode: zip => { dispatch(updateZip(zip)); },
-  updateLatLong: coords => { dispatch(updateCoords(coords)); },
-});
-
-export default connect(undefined, mapDispatchToProps)(Location);

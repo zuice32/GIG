@@ -3,21 +3,13 @@ import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import { Root, Drawer } from 'native-base';
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, addNavigationHelpers, DrawerNavigator } from 'react-navigation';
 
 import Screens from './src/Screens';
 import reducer from './src/Storage/Reducers';
 import Sidebar from './src/Components/Sidebar/Sidebar';
 
-
-const AppNavigator = StackNavigator({
-  Home: { screen: Screens.Loading },
-  Main: { screen: Screens.Main },
-  Zip: { screen: Screens.Zip }
-},
-{
-  title: 'I am app',
-});
+import AppNavigator from './src/Navigators/AppNavigator';
 
 const store = createStore(reducer, {
   location: {
@@ -28,29 +20,49 @@ const store = createStore(reducer, {
   },
 });
 
-export default () => {
-  const closeDrawer = () => {
-    console.log('in close');
-    this.drawer._root.close();
-  };
-  const openDrawer = () => {
-    console.log('in open');
-    this.drawer._root.open();
-  };
+export default class App extends Component {
+  state = { isReady: false };
+  nav = undefined;
 
-  return (
-    <Provider store={store}>
-      <Root>
-        <Drawer
-          ref={(ref) => { this.drawer = ref; }}
-          content={<Sidebar />}
-          onClose={closeDrawer}>
-          <AppNavigator screenProps={{ openDrawer }} />
-        </Drawer>
-      </Root>
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
+    });
+    this.setState({ isReady: true });
+  }
 
+  render() {
+    if (!this.state.isReady) {
+      return <Expo.AppLoading />;
+    }
+
+    const closeDrawer = () => {
+      this.drawer._root.close();
+    };
+    const openDrawer = () => {
+      this.drawer._root.open();
+    };
+    const dispatchNavigateAction = action => {
+      this.nav.dispatch(action);
+      closeDrawer();
+    };
+
+    return (
+      <Provider store={store}>
+        <Root>
+          <Drawer
+            ref={(ref) => { this.drawer = ref; }}
+            content={<Sidebar closeDrawer={closeDrawer} dispatch={dispatchNavigateAction} />}
+            onClose={closeDrawer}>
+            <AppNavigator
+              ref={(ref) => { this.nav = ref; }}
+              screenProps={{ openDrawer }}
+            />
+          </Drawer>
+        </Root>
       </Provider>
-  )
-
-}
-// export default () => ();
+    );
+  }
+};
