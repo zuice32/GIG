@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { Location as LocationApi, Permissions } from 'expo';
 import ActionButton from 'react-native-action-button';
 import { Icon } from 'native-base';
+import PropTypes from 'prop-types';
 
 import { updateCoords, updateZip } from '../../Storage/Location/Actions';
 
-export default class Location extends Component {
+class Location extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +33,7 @@ export default class Location extends Component {
 
   render() {
     return (
-        <ActionButton backgroundColor='#5067FF' offsetY={60} style={{ zIndex: 99999 }}>
+        <ActionButton backgroundColor='#5067FF' style={{ zIndex: 99999 }}>
           <ActionButton.Item buttonColor='#34A34F' title='Use Current Location' onPress={this.getLocation}>
             <Icon name="pin" style={styles.actionButtonIcon} />
           </ActionButton.Item>
@@ -45,6 +46,11 @@ export default class Location extends Component {
 
 }
 
+Location.propTypes = {
+  updateLatLong: PropTypes.func,
+  updateZipCode: PropTypes.func,
+};
+
 const styles = StyleSheet.create({
   actionButtonIcon: {
     fontSize: 20,
@@ -52,3 +58,9 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+const mapDispatchToProps = dispatch => ({
+  updateLatLong: dispatch => dispatch(updateCoords()),
+  updateZipCode: dispatch => dispatch(updateZip()),
+});
+export default connect(undefined, mapDispatchToProps)(Location);

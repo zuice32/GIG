@@ -1,6 +1,6 @@
 import Location from './Location';
 
-global.fetch = require('jest-fetch-mock');
+global.fetch = require('jest-fetch-mock'); // eslint-disable-line
 
 const googleResponseGeocode = {
    "results" : [

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import {
-  Container, Content, Form, Item, Label, Input, Icon, Button, Text, Toast, List, ListItem, Header,
+  Container, Content, Form, Item, Label, Input, Button, Text,
 } from 'native-base';
 
 import { updateCoords, updateZip } from '../Storage/Location/Actions'
@@ -35,7 +35,7 @@ export default class ZipForm extends Component {
     return zip.toString().match(/[0-9]{5}/);
   }
 
-  onSubmit(ev) {
+  onSubmit() {
     // onSubmitEditing for the input, and for the button's press action.
 
   }
@@ -60,9 +60,7 @@ export default class ZipForm extends Component {
   }
 
   onEndEditing() {
-    console.log(`validating ${this.state.zip}`);
     if (this.state.zip !== '' && !this.validateZip(this.state.zip)) {
-      console.log('erroring');
       this.showErrorMessage();
     }
   }
@@ -71,7 +69,7 @@ export default class ZipForm extends Component {
       this.props.navigation.dispatch(NavigationActions.reset({
         index: 0,
         actions: [
-          NavigationActions.back({ routeName: 'Main' }),
+          NavigationActions.back({ routeName: 'Home' }),
         ]
       }));
   }

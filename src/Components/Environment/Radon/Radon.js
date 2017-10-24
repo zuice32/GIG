@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Body, Text,
-  Card, CardItem,
   H1, Content,
 } from 'native-base';
 import PropTypes from 'prop-types';
@@ -19,7 +17,7 @@ class Radon extends Component {
     return (
       <Content>
         <Content padder>
-          <H1>Results for {this.props.zip}</H1>
+          <H1>Average Test Results for {this.props.zip}</H1>
           <Results level={this.props.level} />
           <LinkToTesting url='http://www.monksp.org' />
         </Content>

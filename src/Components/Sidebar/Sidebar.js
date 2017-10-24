@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Linking, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import {
-  List, ListItem, Button, Text, Icon, Container, Content, Left, Body, Separator,
+  List, ListItem, Text, Container, Content, Separator,
 } from 'native-base';
+import PropTypes from 'prop-types';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -12,20 +12,18 @@ import Footer from './Footer';
 export default class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.goToWater = this.goToWater.bind(this);
+    this.goTo = this.goTo.bind(this);
   }
   handleClick = url => {
     Linking.openURL(url);
   }
 
-  goToWater = () => {
-    const navigateAction = NavigationActions.navigate({ routeName: 'Water' });
+  goTo = destination => {
+    const navigateAction = NavigationActions.navigate({ routeName: destination });
     this.props.dispatch(navigateAction);
   }
 
   render() {
-    console.log('nav', this.props.nav);
-    // const { navigate } = this.props.navigation;
     return (
         <Container style={styles.container} padded>
           <Content style={styles.content}>
@@ -34,37 +32,38 @@ export default class Sidebar extends Component {
               <Separator bordered>
                 <Text>ENVIRONMENT</Text>
               </Separator>
-              <ListItem>
-                <Text>Overview</Text>
+              <ListItem onPress={() => this.goTo('Radon')}>
+                  <Text>Radon</Text>
               </ListItem>
-              <ListItem>
-                <Text>Air</Text>
-              </ListItem>
-              <ListItem>
-                <Text>Land</Text>
-              </ListItem>
-              <ListItem>
-                <Button transparent onPress={this.goToWater}>
+              <ListItem onPress={() => this.goTo('Water')}>
                   <Text>Water</Text>
-                </Button>
               </ListItem>
               <ListItem>
-                <Text>Waste</Text>
+                <Text style={styles.textDisabled}>Overview</Text>
               </ListItem>
               <ListItem>
-                <Text>Toxics</Text>
+                <Text style={styles.textDisabled}>Air</Text>
               </ListItem>
               <ListItem>
-                <Text>Radiation</Text>
+                <Text style={styles.textDisabled}>Land</Text>
               </ListItem>
               <ListItem>
-                <Text>Facilities</Text>
+                <Text style={styles.textDisabled}>Waste</Text>
               </ListItem>
               <ListItem>
-                <Text>Compliance</Text>
+                <Text style={styles.textDisabled}>Toxics</Text>
+              </ListItem>
+              <ListItem>
+                <Text style={styles.textDisabled}>Radiation</Text>
+              </ListItem>
+              <ListItem>
+                <Text style={styles.textDisabled}>Facilities</Text>
+              </ListItem>
+              <ListItem>
+                <Text style={styles.textDisabled}>Compliance</Text>
               </ListItem>
               <ListItem last>
-                <Text>Other</Text>
+                <Text style={styles.textDisabled}>Other</Text>
               </ListItem>
               <Separator bordered>
                 <Text>Health</Text>
@@ -90,9 +89,14 @@ export default class Sidebar extends Component {
         </Container>
       );
   }
+}
+
+Sidebar.propTypes = {
+  dispatch: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
   container: { zIndex: 10000 },
-  content: { flex: 1, backgroundColor: "#fff" }
+  content: { flex: 1, backgroundColor: "#fff" },
+  textDisabled: { opacity: .2 },
 });

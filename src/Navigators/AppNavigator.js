@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import Screens from '../Screens';
 

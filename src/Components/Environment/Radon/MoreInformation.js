@@ -12,7 +12,7 @@ export default class MoreInformation extends Component {
       <List>
         <Separator bordered><Text>More Information</Text></Separator>
         <ListItem>
-          <Text>Radon BRP</Text>
+          <Text>Bureau of Radiation Protection</Text>
         </ListItem>
         <ListItem>
           <Text>More Information from the CDC</Text>

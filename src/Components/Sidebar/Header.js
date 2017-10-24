@@ -12,7 +12,7 @@ export default class Header extends Component {
         </Image>
     )
   }
-};
+}
 
 const styles = StyleSheet.create({
   banner: {

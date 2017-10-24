@@ -2,7 +2,7 @@
   "expo": {
     "name": "Team F-Set Code4PA App",
     "slug": "code4pa",
-    "primaryColor": "#0000ff",
+    "primaryColor": "#000000",
     "androidStatusBarColor": "#000000",
     "androidStatusBar": {
       "barStyle": "dark-content",

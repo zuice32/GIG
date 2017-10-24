@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import {
-  Footer, FooterTab, Button, Text, Icon
+  Footer, FooterTab, Button, Icon
 } from 'native-base';
 
 export default class AppFooter extends Component {
