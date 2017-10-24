@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { H1 } from 'native-base';
+import PropTypes from 'prop-types';
 
 export default class Location extends Component {
   render() {
@@ -10,3 +11,6 @@ export default class Location extends Component {
     )
   }
 }
+Location.propTypes = {
+  closest: PropTypes.string,
+};

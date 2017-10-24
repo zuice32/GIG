@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  H1, Content,
+  Content,
 } from 'native-base';
 
 import Location from './Location';
