@@ -14,6 +14,10 @@ export default class MoreInformation extends Component {
     //http://data.pa.gov
     return (
       <List>
+        <ListItem>
+          <Text>Water Hotline</Text>
+          <Text>800-237-2366</Text>
+        </ListItem>
         <Separator bordered><Text>More Information</Text></Separator>
         <ListItem>
           <Text>Story Map on other PADEP Monitoring</Text>

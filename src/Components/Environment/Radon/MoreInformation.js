@@ -4,30 +4,34 @@ import {
   Separator,
 } from 'native-base';
 
-import LinkToTesting from './LinkToTesting';
+import Link from '../../Common/Link';
 
 export default class MoreInformation extends Component {
   render() {
-    //http://www.dep.pa.gov/BUSINESS/RADIATIONPROTECTION/Pages/default.aspx
-    //https://www.cdc.gov/nceh/radiation/brochure/profile_radon.htm
     return (
       <List>
         <ListItem>
-          <LinkToTesting url='http://www.monksp.org' />
+          <Link url={'http://www.monksp.org'}><Text>Learn how to perform your own radon test</Text></Link>
         </ListItem>
         <ListItem>
-          <Text>PADEP Radon Hotline</Text>
-          <Text>800-237-2366</Text>
+          <Link url={'tel:8002372366'}>
+            <Text>PADEP Radon Hotline</Text>
+            <Text>800-237-2366</Text>
+          </Link>
         </ListItem>
         <ListItem>
-          <Text>dep.pa.gov</Text>
+          <Link url={'http://dep.pa.gov'}><Text>dep.pa.gov</Text></Link>
         </ListItem>
         <Separator bordered><Text>More Information</Text></Separator>
         <ListItem>
-          <Text>Bureau of Radiation Protection</Text>
+          <Link url={'http://www.dep.pa.gov/BUSINESS/RADIATIONPROTECTION/Pages/default.aspx'}>
+            <Text>Bureau of Radiation Protection</Text>
+          </Link>
         </ListItem>
         <ListItem>
-          <Text>More Information from the CDC</Text>
+          <Link url={'https://www.cdc.gov/nceh/radiation/brochure/profile_radon.htm'}>
+            <Text>More Information from the CDC</Text>
+          </Link>
         </ListItem>
       </List>
     )

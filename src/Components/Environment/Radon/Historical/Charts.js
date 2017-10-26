@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Chart from '../../../Common/Chart';
 
-const conf={
+const meanChart={
         chart: {
             type: 'spline',
         },
@@ -13,11 +13,12 @@ const conf={
             type: 'datetime',
         },
         yAxis: {
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+          title: { text: null },
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }]
         },
         legend: {
             enabled: false
@@ -49,6 +50,6 @@ const conf={
 
 export default class Charts extends Component {
   render() {
-    return <Chart config={conf} />
+    return <Chart config={meanChart} />
   }
 }

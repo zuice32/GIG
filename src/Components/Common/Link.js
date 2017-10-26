@@ -3,18 +3,19 @@ import { Linking } from 'react-native';
 import { Text } from 'native-base';
 import PropTypes from 'prop-types';
 
-export default class LinkToTesting extends Component {
+export default class Link extends Component {
   handleClick = () => {
+    console.log(`opening ${this.props.url}`)
     Linking.openURL(this.props.url);
   }
 
   render() {
     return (
-      <Text className="radonTestLink" onPress={this.handleClick}>Learn how to perform your own radon test</Text>
+      <Text onPress={this.handleClick}>{this.props.children}</Text>
     )
   }
 }
 
-LinkToTesting.propTypes = {
+Link.propTypes = {
   url: PropTypes.string,
 };
