@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 
 import Results from './Results';
-import LinkToTesting from './LinkToTesting';
+import Historical from './Historical';
 import MoreInformation from './MoreInformation';
 
 class Radon extends Component {
@@ -19,7 +19,7 @@ class Radon extends Component {
         <Content padder>
           <H1>Average Test Results for {this.props.zip}</H1>
           <Results level={this.props.level} />
-          <LinkToTesting url='http://www.monksp.org' />
+          <Historical />
         </Content>
         <MoreInformation />
       </Content>

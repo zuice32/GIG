@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Linking } from 'react-native';
+import { Linking } from 'react-native';
+import { Text } from 'native-base';
 import PropTypes from 'prop-types';
 
 export default class LinkToTesting extends Component {
@@ -9,8 +10,7 @@ export default class LinkToTesting extends Component {
 
   render() {
     return (
-      <Button className="radonTestLink" block info onPress={this.handleClick} title="Learn how to perform your own radon test">
-      </Button>
+      <Text className="radonTestLink" onPress={this.handleClick}>Learn how to perform your own radon test</Text>
     )
   }
 }
