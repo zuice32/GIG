@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import ChartView from 'react-native-highcharts';
 
-export default class Chart extends React.Component {
+class Chart extends React.Component {
   render() {
     const Highcharts='Highcharts';
     const standardConf={
       chart: { zoomType: 'xy' },
       title: { text: 'Median Readings and Acceptable Limits in Waterways' },
       xAxis: [{
-        categories: ['Fishing: *Dis Oxy', 'Fishing: pH', 'Swimming: Solids', 'Swimming: Bacteria', 'Farm Impact: Nitrogen', 'Farm Impact: Phosphorous', 'Mining Impact: Iron', 'Mining Impact: Maganese', 'Mining Impact: Sulfate', 'Urban Impact: Sp Conduct', 'Urban Impact: Chlorides', 'Bork:  Bork Bork'],
+        categories: ['Fishing: *Dis Oxy', 'Fishing: pH', 'Swimming: Solids', 'Farm Impact: Nitrogen', 'Farm Impact: Phosphorous', 'Mining Impact: Iron', 'Mining Impact: Manganese', 'Mining Impact: Sulfate', 'Urban Impact: Sp Conduct', 'Urban Impact: Chlorides', 'Bork:  Bork Bork'],
         crosshair: true
       }],
       yAxis: [{ // Primary yAxis
@@ -49,7 +50,19 @@ export default class Chart extends React.Component {
         name: 'Median Value',
         type: 'column',
         yAxis: 1,
-        data: [10, 8, 18, 2.9, 1.4, .1, 3, .92, 3, 4.6, 1.8, 5.4],
+        data: [
+          // 10, 8, 18, 2.9, 1.4, .1, 3, .92, 3, 4.6, 1.8, 5.4
+          this.props["dissolved-oxygen-do"].median,
+          this.props.ph.median,
+          this.props["total-suspended-solids"].median,
+          this.props.nitrogen.median,
+          this.props.phosphorus.median,
+          this.props.iron.median,
+          this.props.manganese.median,
+          this.props.sulfate.median,
+          this.props["specific-conductance"].median,
+          this.props.chloride.median,
+        ],
         tooltip: { valueSuffix: 'mg/L' }
       }, {
         name: 'Acceptable Limits',
@@ -68,7 +81,33 @@ export default class Chart extends React.Component {
 
 Chart.defaultProps = {
   conf: {},
+  chloride: { median: 0 },
+  "dissolved-oxygen-do": { median: 0 },
+  iron: { median: 0 },
+  manganese: { median: 0 },
+  nitrogen: { median: 0 },
+  ph: { median: 0 },
+  phosphorus: { median: 0 },
+  "specific-conductance": { median: 0 },
+  sulfate: { median: 0 },
+  "total-suspended-solids": { median: 0 },
 };
+
 Chart.propTypes = {
   conf: PropTypes.object,
 };
+
+const mapStateToProps = state => ({
+  chloride: state.water.chloride,
+  "dissolved-oxygen-do": state.water["dissolved-oxygen-do"],
+  iron: state.water.iron,
+  manganese: state.water.manganese,
+  nitrogen: state.water.nitrogen,
+  ph: state.water.ph,
+  phosphorus: state.water.phosphorus,
+  "specific-conductance": state.water["specific-conductance"],
+  sulfate: state.water.sulfate,
+  "total-suspended-solids": state.water["total-suspended-solids"]
+});
+
+export default connect(mapStateToProps)(Chart)

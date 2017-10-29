@@ -37,6 +37,18 @@ const store = createStore(
       "averageColorRGB": null,
       "id": 0
     },
+    water: {
+      chloride: {name: "Chloride","count":48,"median":38.86,"year":2015,"id":0},
+      "dissolved-oxygen-do": {name: "Dissolved oxygen (DO)","count":44,"median":10.6,"year":2015,"id":0},
+      iron: {name: "Iron","count":49,"median":0.45,"year":2015,"id":0},
+      manganese: {name: "Manganese","count":49,"median":0.09,"year":2015,"id":0},
+      nitrogen: {name: "Nitrogen","count":47,"median":1.64,"year":2015,"id":0},
+      ph: {name: "pH","count":92,"median":7.94,"year":2015,"id":0},
+      phosphorus: {name: "Phosphorus","count":49,"median":0.11,"year":2015,"id":0},
+      "specific-conductance": {name: "Specific conductance","count":92,"median":437.0,"year":2015,"id":0},
+      sulfate: {name: "Sulfate","count":48,"median":46.94,"year":2015,"id":0},
+      "total-suspended-solids": {name: "Total suspended solids","count":32,"median":12.0,"year":2015,"id":0}
+    }
   },
   applyMiddleware(sagaMiddleware),
 );

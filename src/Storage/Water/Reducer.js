@@ -1,6 +1,9 @@
 import { UPDATE_WATER_COMPLETE } from './Actions';
 
-const location = (state, action = {}) => {
+initialState = {};
+
+const location = (state = initialState, action = {}) => {
+  console.log(action);
   switch (action.type) {
     case UPDATE_WATER_COMPLETE:
       return action.newData;

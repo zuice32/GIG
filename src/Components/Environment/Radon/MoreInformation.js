@@ -12,7 +12,7 @@ export default class MoreInformation extends Component {
       <List>
         <ListItem icon>
           <Left>
-              <Button iconLeft success><Link url={'tel:8002372366'}><Icon name="call" /></Link></Button>
+              <Button success><Icon name="call" /></Button>
           </Left>
           <Body>
             <Link url={'tel:8002372366'}>

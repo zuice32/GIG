@@ -6,7 +6,7 @@ export default class Location extends Component {
   render() {
     return (
       <Text>
-        The closest continuously monitoring data station is {this.props.closest}
+        Data for monitoring station: {this.props.closest}
       </Text>
     )
   }
