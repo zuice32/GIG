@@ -22,13 +22,11 @@ class Location extends Component {
     }
 
     const location = await LocationApi.getCurrentPositionAsync({});
-    console.log(location);
 
     this.props.updateLatLong({
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
     });
-    this.props.updateZipCode('18847');
   }
 
   render() {
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateLatLong: dispatch => dispatch(updateCoords()),
-  updateZipCode: dispatch => dispatch(updateZip()),
+  updateLatLong: coords => dispatch(updateCoords(coords)),
+  updateZipCode: zip => dispatch(updateZip(zip)),
 });
 export default connect(undefined, mapDispatchToProps)(Location);

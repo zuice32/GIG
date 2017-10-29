@@ -8,7 +8,7 @@ import {
 
 import { updateCoords, updateZip } from '../Storage/Location/Actions'
 
-export default class ZipForm extends Component {
+class ZipForm extends Component {
   static navigationOptions = {
     title: 'Enter a zip code',
   };
@@ -116,3 +116,5 @@ const mapDispatchToProps = dispatch => ({
   updateZipCode: zip => { dispatch(updateZip(zip)); },
   updateLatLong: coords => { dispatch(updateCoords(coords)); },
 });
+
+export default connect(undefined, mapDispatchToProps)(ZipForm);
