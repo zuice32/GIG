@@ -20,7 +20,7 @@ export default class Circle extends Component {
 
     return (
       <View style={styles.circleContainer}>
-        <Text style={[styles.result, resultStyle]}>{this.props.level}</Text>
+        <Text style={[styles.result, resultStyle]}>{this.props.level.toFixed(2)}</Text>
         <Text style={styles.label}>{this.props.label}</Text>
       </View>
     );

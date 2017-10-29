@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Col, Grid } from 'react-native-easy-grid';
+import { connect } from 'react-redux';
 import { Content, View, List, ListItem, Left, Body, Button, Thumbnail, } from 'native-base';
 import PropTypes from 'prop-types';
 
 import Circle from './Circle';
 import Key from './Key'
 
-export default class Results extends Component {
+class Results extends Component {
 
   render() {
     return (
       <Content>
         <View style={styles.list}>
           <Circle level={0} label={'Minimum'} />
-          <Circle level={4.7} label={'Median'} />
+          <Circle level={this.props.average} label={'Average'} />
           <Circle level={435.2} label={'Maximum'} />
         </View>
         <Key />
@@ -37,3 +37,9 @@ export const styles = StyleSheet.create({
 Results.propTypes = {
   level: PropTypes.number,
 };
+
+const mapStateToProps = state => ({
+  average: state.radon.average,
+});
+
+export default connect(mapStateToProps)(Results);
