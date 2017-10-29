@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import {
   Content,
-  H2,
   Text,
 } from 'native-base';
 
@@ -18,9 +18,6 @@ export default class Water extends Component {
       <Content>
         <Content padder>
           <Location closest={'Swatara Creek'} />
-          <H2>Uses - Recreation</H2>
-          <Chart />
-          <H2>Impacts</H2>
           <Chart />
           <Text>
             Information is collected through a collaborative sampling effort of

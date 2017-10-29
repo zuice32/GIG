@@ -1,5 +1,10 @@
 {
   "presets": ["babel-preset-expo"],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-exponentiation-operator",
+    "transform-export-extensions"
+  ],
   "env": {
     "development": {
       "plugins": ["transform-react-jsx-source"]

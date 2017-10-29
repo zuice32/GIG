@@ -1,79 +1,74 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
 import ChartView from 'react-native-highcharts';
 
 export default class Chart extends React.Component {
   render() {
     const Highcharts='Highcharts';
-    const conf={
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function () {
-
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
-                    }
-                }
-            },
-            title: {
-                text: 'Live random data'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                name: 'Random data',
-                data: (function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
-                    }
-                    return data;
-                }())
-            }]
-        };
+    const standardConf={
+      chart: { zoomType: 'xy' },
+      title: { text: 'Median Readings and Acceptable Limits in Waterways' },
+      xAxis: [{
+        categories: ['Fishing: *Dis Oxy', 'Fishing: pH', 'Swimming: Solids', 'Swimming: Bacteria', 'Farm Impact: Nitrogen', 'Farm Impact: Phosphorous', 'Mining Impact: Iron', 'Mining Impact: Maganese', 'Mining Impact: Sulfate', 'Urban Impact: Sp Conduct', 'Urban Impact: Chlorides', 'Bork:  Bork Bork'],
+        crosshair: true
+      }],
+      yAxis: [{ // Primary yAxis
+        labels: {
+          format: '{value}',
+          style: { color: '#000000' }
+        },
+        title: {
+          text: 'Acceptable Limit',
+          style: { color: '#000000' }
+        }
+      }, { // Secondary yAxis
+        title: {
+          text: 'Median Measurement',
+          style: { color: '#000080' }
+        },
+        labels: {
+          format: '{value}',
+          style: { color: '#000080' }
+        },
+        opposite: true
+      }],
+      tooltip: { shared: true },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 150,
+        verticalAlign: 'top',
+        y: 50,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      exporting: { enabled: false },
+      series: [{
+        name: 'Median Value',
+        type: 'column',
+        yAxis: 1,
+        data: [10, 8, 18, 2.9, 1.4, .1, 3, .92, 3, 4.6, 1.8, 5.4],
+        tooltip: { valueSuffix: 'mg/L' }
+      }, {
+        name: 'Acceptable Limits',
+        type: 'spline',
+        data: [6, 6, 20, 4, 2.0, .2, 1.5, 1.0, 2.5, 6, 2.5, .99999],
+        tooltip: { valueSuffix: 'Units' }
+      }]
+    };
+    const conf = Object.assign({}, standardConf, this.props.conf);
     return (
-      <ChartView style={{height:300}} config={conf}></ChartView>
+      <View><ChartView style={{height:300}} config={conf}></ChartView></View>
     );
 
   }
 }
+
+Chart.defaultProps = {
+  conf: {},
+};
+Chart.propTypes = {
+  conf: PropTypes.object,
+};

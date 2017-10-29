@@ -1,4 +1,4 @@
-import { UPDATE_ZIP, UPDATE_COORDS } from './Actions';
+import { SYNC_ZIP, SYNC_COORDS } from './Actions';
 
 const initialState = {
   zip: undefined,
@@ -7,9 +7,9 @@ const initialState = {
 
 const location = (state = initialState, action = {}) => {
   switch (action.type) {
-    case UPDATE_ZIP:
+    case SYNC_ZIP:
       return { ...state, zip: action.zip };
-    case UPDATE_COORDS:
+    case SYNC_COORDS:
       return { ...state, coords: action.coords };
     default:
       return state;

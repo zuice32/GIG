@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-  List, ListItem, Text,
-  Separator,
+  List, ListItem, Text, Button,
+  Separator, Icon, Left, Body
 } from 'native-base';
 
 import Link from '../../Common/Link';
@@ -10,9 +10,9 @@ export default class MoreInformation extends Component {
   render() {
     return (
       <List>
-        <ListItem>
-          <Text>Water Hotline</Text>
-          <Text>800-237-2366</Text>
+        <ListItem icon>
+          <Left><Button success><Icon name="call" /></Button></Left>
+          <Body><Text>Water Hotline - 800-237-2366</Text></Body>
         </ListItem>
         <Separator bordered><Text>More Information</Text></Separator>
         <ListItem>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { connect, Provider } from 'react-redux';
 import { Root, Drawer } from 'native-base';
 
 import { StackNavigator, addNavigationHelpers, DrawerNavigator } from 'react-navigation';
+
+import createSagaMiddleware from 'redux-saga';
 
 import Screens from './src/Screens';
 import reducer from './src/Storage/Reducers';
@@ -11,14 +13,23 @@ import Sidebar from './src/Components/Sidebar/Sidebar';
 
 import AppNavigator from './src/Navigators/AppNavigator';
 
-const store = createStore(reducer, {
-  location: {
-    zip: '18847',
+import sagaManager from './src/Sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  reducer,
+  {
+    location: {
+      zip: '18847',
+    },
+    radon: {
+      level: .8,
+    },
   },
-  radon: {
-    level: .8,
-  },
-});
+  applyMiddleware(sagaMiddleware),
+);
+sagaMiddleware.run(sagaManager);
+
 
 export default class App extends Component {
   state = { isReady: false };
