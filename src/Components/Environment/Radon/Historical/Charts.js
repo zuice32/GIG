@@ -14,22 +14,19 @@ export default class Charts extends Component {
       let fill;
       if (item[1] > 20) {
         fill = Ratings.severeColor;
-        fillLine = Ratings.severeColor;
       }
       else if (item[1] > 10) {
         fill = Ratings.warningColor;
-        fillLine = 'black';
       }
       else {
         fill = Ratings.goodColor;
-        fillLine = Ratings.goodColor;
       }
 
       // Populate the averages array
       averages.push({
         x: item[0],
         y: item[1],
-        marker: { fillColor: fill, lineColor: fillLine }
+        marker: { fillColor: fill }
       });
 
       // Bump up the top of the cart if it's not too high.

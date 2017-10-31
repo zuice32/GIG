@@ -17,10 +17,10 @@ export default class Key extends Component {
           <Text style={styles.goodText}>&lt; 10</Text>
         </View>
         <View style={[styles.keyItem, styles.warning]}>
-          <Text>10.1 - 19.9</Text>
+          <Text style={styles.warningText}>10.1 - 19.9</Text>
         </View>
         <View style={[styles.keyItem, styles.severe]}>
-          <Text>&gt; 20</Text>
+          <Text style={styles.severeText}>&gt; 20</Text>
         </View>
       </View>
     );
@@ -53,5 +53,7 @@ export const styles = StyleSheet.create({
   good: {
     backgroundColor: Ratings.goodColor,
   },
-  goodText: { color: '#fff' }
+  goodText: { color: '#fff' },
+  warningText: { color: '#fff' },
+  severeText: { color: '#fff' }
 });
