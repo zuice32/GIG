@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Content, View, List, ListItem, Left, Body, Button, Thumbnail, } from 'native-base';
 import PropTypes from 'prop-types';
 
-import Circle from './Circle';
+import Circle from '../../../Common/Circle';
 import Key from './Key'
 
 class Results extends Component {
@@ -13,9 +13,9 @@ class Results extends Component {
     return (
       <Content>
         <View style={styles.list}>
-          <Circle level={0} label={'Minimum'} />
-          <Circle level={this.props.average} label={'Average'} />
-          <Circle level={435.2} label={'Maximum'} />
+          <Circle level={this.props.minimum} label={'Minimum'} severeLevel={20} warningLevel={10} />
+          <Circle level={this.props.average} label={'Average'} severeLevel={20} warningLevel={10} />
+          <Circle level={this.props.maximum} label={'Maximum'} severeLevel={20} warningLevel={10} />
         </View>
         <Key />
       </Content>
@@ -40,6 +40,8 @@ Results.propTypes = {
 
 const mapStateToProps = state => ({
   average: state.radon.average,
+  minimum: state.radon.minimum,
+  maximum: state.radon.maximum,
 });
 
 export default connect(mapStateToProps)(Results);

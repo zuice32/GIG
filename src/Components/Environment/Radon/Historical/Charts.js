@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Chart from '../../../Common/Chart';
+import * as Ratings from '../../../../Styles/Ratings';
 
 export default class Charts extends Component {
   render() {
@@ -12,16 +13,16 @@ export default class Charts extends Component {
       // Determine the fill color
       let fill;
       if (item[1] > 20) {
-        fill = 'red';
-        fillLine = 'red'
+        fill = Ratings.severeColor;
+        fillLine = Ratings.severeColor;
       }
       else if (item[1] > 10) {
-        fill = 'yellow'
+        fill = Ratings.warningColor;
         fillLine = 'black';
       }
       else {
-        fill = 'blue';
-        fillLine = 'blue';
+        fill = Ratings.goodColor;
+        fillLine = Ratings.goodColor;
       }
 
       // Populate the averages array

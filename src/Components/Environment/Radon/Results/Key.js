@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Content, View, List, ListItem, Left, Body, Button, Thumbnail, } from 'native-base';
 
+import * as Ratings from '../../../../Styles/Ratings';
+
 export default class Key extends Component {
 
   render() {
@@ -12,13 +14,10 @@ export default class Key extends Component {
           <Text>No Data</Text>
         </View>
         <View style={[styles.keyItem, styles.good]}>
-          <Text style={styles.goodText}>&lt; 4</Text>
+          <Text style={styles.goodText}>&lt; 10</Text>
         </View>
         <View style={[styles.keyItem, styles.warning]}>
-          <Text>4.1 - 9.9</Text>
-        </View>
-        <View style={[styles.keyItem, styles.elevated]}>
-          <Text>10 - 19.9</Text>
+          <Text>10.1 - 19.9</Text>
         </View>
         <View style={[styles.keyItem, styles.severe]}>
           <Text>&gt; 20</Text>
@@ -38,24 +37,21 @@ export const styles = StyleSheet.create({
   },
   keyItem: {
     height: 50,
-    width: '20%',
+    width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   insufficient: {
-    backgroundColor: '#ccc',
+    backgroundColor: Ratings.insufficientColor,
   },
   severe: {
-    backgroundColor: '#f00',
-  },
-  elevated: {
-    backgroundColor: 'orange',
+    backgroundColor: Ratings.severeColor,
   },
   warning: {
-    backgroundColor: 'yellow',
+    backgroundColor: Ratings.warningColor,
   },
   good: {
-    backgroundColor: '#00f',
+    backgroundColor: Ratings.goodColor,
   },
   goodText: { color: '#fff' }
 });
