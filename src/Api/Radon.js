@@ -7,7 +7,7 @@ export function currentDataForLocation(zip) {
 }
 
 export function dataForLocationByYear(zip, year) {
-  return fetch(`http://ra-svc.azurewebsites.net/api/radon/${zip}~${year}`)
+  return fetch(`https://ra-svc.azurewebsites.net/api/radon/${zip}~${year}`)
     .then(response => response.text())
     .then(text => {
       const parsed = JSON.parse(text);

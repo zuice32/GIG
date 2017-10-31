@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import {
   Content,
@@ -9,7 +10,7 @@ import Chart from './Chart';
 import Location from './Location';
 import MoreInformation from './MoreInformation';
 
-export default class Water extends Component {
+class Water extends Component {
   static navigationOptions = {
     tabBarVisible: false,
   }
@@ -17,7 +18,7 @@ export default class Water extends Component {
     return (
       <Content>
         <Content padder>
-          <Location closest={'Swatara Creek'} />
+          <Location closest={this.props.location} />
           <Chart />
           <Text>
             Information is collected through a collaborative sampling effort of
@@ -31,3 +32,9 @@ export default class Water extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  location: state.water.location,
+});
+
+export default connect(mapStateToProps)(Water);

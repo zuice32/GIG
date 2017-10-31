@@ -15,12 +15,10 @@ export default class Main extends Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container style={styles.container}>
         <Header title={'I am app'} openDrawer={this.props.screenProps.openDrawer} />
         <Tabs navigation={this.props.navigation} />
-        <Location navigate={navigate} />
       </Container>
     );
   }

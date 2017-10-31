@@ -5,7 +5,7 @@ export function currentDataForLocation(coords) {
 }
 
 export function dataForLocationByYear(coords, year) {
-  return fetch(`http://ra-svc.azurewebsites.net/api/water?latitude=${coords.latitude}&longitude=${coords.longitude}&year=${year}`)
+  return fetch(`https://ra-svc.azurewebsites.net/api/water?latitude=${coords.latitude}&longitude=${coords.longitude}&year=${year}`)
     .then(response => response.text())
     .then(text => {
       const parsed = JSON.parse(text);

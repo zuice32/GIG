@@ -4,6 +4,6 @@ import Charts from './Charts';
 
 export default class Historical extends Component {
   render() {
-    return <Charts />
+    return <Charts historical={this.props.historical} />
   }
 }

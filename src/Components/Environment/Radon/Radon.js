@@ -19,7 +19,7 @@ class Radon extends Component {
         <Content padder>
           <H1>Average Test Results for {this.props.zip}</H1>
           <Results level={this.props.level} />
-          <Historical />
+          <Historical historical={this.props.historical} />
         </Content>
         <MoreInformation />
       </Content>
@@ -32,9 +32,17 @@ Radon.propTypes = {
   level: PropTypes.number,
 };
 
-const mapStateToProps = state => ({
-  zip: state.location.zip,
-  level: state.radon.level,
-});
+const mapStateToProps = state => {
+  return {
+    zip: state.location.zip,
+    level: state.radon.level,
+    historical: state.radon.historicalAverages,
+  }
+};
+// const mapStateToProps = state => ({
+//   zip: state.location.zip,
+//   level: state.radon.level,
+//   historical: state.radon.historicalAverages,
+// });
 
 export default connect(mapStateToProps)(Radon);

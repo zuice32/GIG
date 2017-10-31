@@ -1,16 +1,34 @@
+import slug from 'slug';
+
 import { UPDATE_WATER_COMPLETE } from './Actions';
 
 initialState = {};
 
-const location = (state = initialState, action = {}) => {
-  console.log(action);
+const processCharacteristics = rawCharacteristics => {
+  const updated = {};
+  rawCharacteristics.forEach(characteristic => {
+    const key = slug(characteristic.characteristic.toLowerCase());
+    updated[key] = {
+      name: characteristic.characteristic,
+      count: characteristic.count,
+      median: characteristic.median,
+    };
+  })
+  return updated;
+}
+
+const water = (state = initialState, action = {}) => {
   switch (action.type) {
     case UPDATE_WATER_COMPLETE:
-      return action.newData;
+      return {
+        characteristics: processCharacteristics(action.newData.characteristics),
+        location: action.newData.location_name,
+        year: action.newData.year,
+      };
       break;
     default:
       return state;
   }
 }
 
-export default location;
+export default water;

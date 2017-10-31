@@ -98,16 +98,16 @@ Chart.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  chloride: state.water.chloride,
-  "dissolved-oxygen-do": state.water["dissolved-oxygen-do"],
-  iron: state.water.iron,
-  manganese: state.water.manganese,
-  nitrogen: state.water.nitrogen,
-  ph: state.water.ph,
-  phosphorus: state.water.phosphorus,
-  "specific-conductance": state.water["specific-conductance"],
-  sulfate: state.water.sulfate,
-  "total-suspended-solids": state.water["total-suspended-solids"]
+  chloride: state.water.characteristics.chloride,
+  "dissolved-oxygen-do": state.water.characteristics["dissolved-oxygen-do"],
+  iron: state.water.characteristics.iron,
+  manganese: state.water.characteristics.manganese,
+  nitrogen: state.water.characteristics.nitrogen,
+  ph: state.water.characteristics.ph,
+  phosphorus: state.water.characteristics.phosphorus,
+  "specific-conductance": state.water.characteristics["specific-conductance"],
+  sulfate: state.water.characteristics.sulfate,
+  "total-suspended-solids": state.water.characteristics["total-suspended-solids"]
 });
 
 export default connect(mapStateToProps)(Chart)
