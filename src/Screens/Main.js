@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Tabs from '../Navigators/EnvironmentNavigator';
 
 import Header from '../Components/Header/Header'
-import Location from '../Components/Location/Location';
 
 export default class Main extends Component {
   static navigationOptions = {

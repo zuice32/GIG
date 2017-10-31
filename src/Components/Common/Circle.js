@@ -30,6 +30,8 @@ export default class Circle extends Component {
 export const styles = StyleSheet.create({
   circleContainer: {
     alignItems: 'center',
+    flexGrow: 1,
+    flexBasis: 0,
   },
   result: {
     backgroundColor: Ratings.insufficientColor,

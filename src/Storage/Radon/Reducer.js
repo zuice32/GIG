@@ -13,7 +13,6 @@ const location = (state = initialState, action = {}) => {
         "limitMax": action.newData.limitMax,
         "historicalAverages": action.newData.year_data.map((e, i) => [e, action.newData.average_data[i]]),
       };
-      break;
     default:
       return state;
   }

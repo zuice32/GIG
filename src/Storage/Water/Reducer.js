@@ -2,7 +2,7 @@ import slug from 'slug';
 
 import { UPDATE_WATER_COMPLETE } from './Actions';
 
-initialState = {};
+const initialState = {};
 
 const processCharacteristics = rawCharacteristics => {
   const updated = {};
@@ -25,7 +25,6 @@ const water = (state = initialState, action = {}) => {
         location: action.newData.location_name,
         year: action.newData.year,
       };
-      break;
     default:
       return state;
   }
