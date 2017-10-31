@@ -9,40 +9,42 @@ it('returns a default', () => {
 
 it('processes properly', () => {
   const input = {
-    "type":"water",
-    "characteristics":[
-      {"characteristic":"Chloride","count":16,"median":46.11},
-      {"characteristic":"Dissolved oxygen (DO)","count":17,"median":10.55},
-      {"characteristic":"Iron","count":17,"median":0.67},
-      {"characteristic":"Manganese","count":17,"median":0.09},
-      {"characteristic":"Nitrogen","count":15,"median":1.85},
-      {"characteristic":"pH","count":33,"median":7.89},
-      {"characteristic":"Phosphorus","count":17,"median":0.15},
-      {"characteristic":"Specific conductance","count":33,"median":432.0},
-      {"characteristic":"Sulfate","count":16,"median":41.21},
-      {"characteristic":"Total suspended solids","count":12,"median":12.0}
-    ],
-    "data":[46.11,10.55,0.67,0.09,1.85,7.89,0.15,432.0,41.21,12.0],
-    "characteristic_data":["Chloride","Dissolved oxygen (DO)","Iron","Manganese","Nitrogen","pH","Phosphorus","Specific conductance","Sulfate","Total suspended solids"],
-    "year":2016,
-    "location_name":"BEAVER RIVER - WQN0906",
-    "id":1
+      "latitude":40.8878,
+      "longitude":-80.3343,
+      "type":"water",
+      "characteristics":[
+        {"characteristic":"Fishing: *dis oxy","count":96,"median":9.8},
+        {"characteristic":"Fishing: pH","count":211,"median":7.8},
+        {"characteristic":"Swimming: Solids","count":92,"median":14.0},
+        {"characteristic":"Farm Impact: Nitrogen","count":106,"median":1.9},
+        {"characteristic":"Farm Impact: Phosphorus","count":116,"median":0.13},
+        {"characteristic":"Mining Impact: Iron","count":116,"median":0.6},
+        {"characteristic":"Mining Impact: Manganese","count":116,"median":0.1},
+        {"characteristic":"Mining Impact: Sulfate","count":115,"median":45.42},
+        {"characteristic":"Urban Impact: Sp Conduct","count":200,"median":462.0},
+        {"characteristic":"Urban Impact: Chlorides","count":98,"median":49.42}
+      ],
+      "data":[9.8,7.8,14.0,1.9,0.13,0.6,0.1,45.42,462.0,49.42],
+      "characteristic_data":["Fishing: *dis oxy","Fishing: pH","Swimming: Solids","Farm Impact: Nitrogen","Farm Impact: Phosphorus","Mining Impact: Iron","Mining Impact: Manganese","Mining Impact: Sulfate","Urban Impact: Sp Conduct","Urban Impact: Chlorides"],
+      "year":2001,
+      "location_name":"BEAVER RIVER - WQN0906",
+      "id":"59f7d776e95e6c14c486427b"
   };
 
   const correct = {
     characteristics: {
-      chloride: {name: "Chloride","count":16,"median":46.11},
-      "dissolved-oxygen-do": {name: "Dissolved oxygen (DO)","count":17,"median":10.55},
-      iron: {name: "Iron","count":17,"median":0.67},
-      manganese: {name: "Manganese","count":17,"median":0.09},
-      nitrogen: {name: "Nitrogen","count":15,"median":1.85},
-      ph: {name: "pH","count":33,"median":7.89},
-      phosphorus: {name: "Phosphorus","count":17,"median":0.15},
-      "specific-conductance": {name: "Specific conductance","count":33,"median":432.0},
-      sulfate: {name: "Sulfate","count":16,"median":41.21},
-      "total-suspended-solids": {name: "Total suspended solids","count":12,"median":12.0}
+      chloride: {name: "Chloride","count":98,"median":49.42},
+      "dissolved-oxygen": {name: "Dissolved oxygen","count":96,"median":9.8},
+      iron: {name: "Iron","count":116,"median":0.6},
+      manganese: {name: "Manganese","count":116,"median":0.1},
+      nitrogen: {name: "Nitrogen","count":106,"median":1.9},
+      ph: {name: "pH","count":211,"median":7.8},
+      phosphorus: {name: "Phosphorus","count":116,"median":0.13},
+      "specific-conductance": {name: "Specific conductance","count":200,"median":462.0},
+      sulfate: {name: "Sulfate","count":115,"median":45.42},
+      "total-suspended-solids": {name: "Total suspended solids","count":92,"median":14.0}
     },
-    year: 2016,
+    year: 2001,
     location: "BEAVER RIVER - WQN0906",
   };
 

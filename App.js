@@ -39,18 +39,18 @@ const store = createStore(
     },
     water: {
       characteristics: {
-        chloride: {name: "Chloride","count":16,"median":46.11},
-        "dissolved-oxygen-do": {name: "Dissolved oxygen (DO)","count":17,"median":10.55},
-        iron: {name: "Iron","count":17,"median":0.67},
-        manganese: {name: "Manganese","count":17,"median":0.09},
-        nitrogen: {name: "Nitrogen","count":15,"median":1.85},
-        ph: {name: "pH","count":33,"median":7.89},
-        phosphorus: {name: "Phosphorus","count":17,"median":0.15},
-        "specific-conductance": {name: "Specific conductance","count":33,"median":432.0},
-        sulfate: {name: "Sulfate","count":16,"median":41.21},
-        "total-suspended-solids": {name: "Total suspended solids","count":12,"median":12.0}
+        chloride: {name: "Chloride","count":98,"median":49.42},
+        "dissolved-oxygen": {name: "Dissolved oxygen","count":96,"median":9.8},
+        iron: {name: "Iron","count":116,"median":0.6},
+        manganese: {name: "Manganese","count":116,"median":0.1},
+        nitrogen: {name: "Nitrogen","count":106,"median":1.9},
+        ph: {name: "pH","count":211,"median":7.8},
+        phosphorus: {name: "Phosphorus","count":116,"median":0.13},
+        "specific-conductance": {name: "Specific conductance","count":200,"median":462.0},
+        sulfate: {name: "Sulfate","count":115,"median":45.42},
+        "total-suspended-solids": {name: "Total suspended solids","count":92,"median":14.0}
       },
-      year: 2016,
+      year: 2001,
       location: "BEAVER RIVER - WQN0906",
     }
   },

@@ -9,7 +9,7 @@ import Results from './Results';
 import Historical from './Historical';
 import MoreInformation from './MoreInformation';
 
-class Radon extends Component {
+export class Radon extends Component {
   static navigationOptions = {
     tabBarVisible: false,
   }

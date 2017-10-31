@@ -17,8 +17,8 @@ class Water extends Component {
     tabBarVisible: false,
   }
   render() {
-    console.log(this.props["dissolved-oxygen-do"]);
-    console.log(typeof(this.props["dissolved-oxygen-do"]));
+    console.log(this.props["dissolved-oxygen"]);
+    console.log(typeof(this.props["dissolved-oxygen"]));
     return (
       <Content>
         <Content padder>
@@ -29,8 +29,8 @@ class Water extends Component {
           <H2>Fishing</H2>
           <View style={styles.list}>
             <Circle
-              level={this.props["dissolved-oxygen-do"].median}
-              label={this.props["dissolved-oxygen-do"].name}
+              level={this.props["dissolved-oxygen"].median}
+              label={this.props["dissolved-oxygen"].name}
               severeLevel={6}
               warningLevel={5} />
             <Circle
@@ -128,7 +128,7 @@ export const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   location: state.water.location,
   chloride: state.water.characteristics.chloride,
-  "dissolved-oxygen-do": state.water.characteristics["dissolved-oxygen-do"],
+  "dissolved-oxygen": state.water.characteristics["dissolved-oxygen"],
   iron: state.water.characteristics.iron,
   manganese: state.water.characteristics.manganese,
   nitrogen: state.water.characteristics.nitrogen,

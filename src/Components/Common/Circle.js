@@ -10,6 +10,9 @@ export default class Circle extends Component {
 
   render() {
     let resultStyle = styles.good;
+    if (this.props.level === undefined) {
+      resultStyle = styles.insufficient;
+    }
     if (this.props.level > this.props.severeLevel) {
       resultStyle = styles.severe;
     }
@@ -27,6 +30,11 @@ export default class Circle extends Component {
 
 }
 
+Circle.defaultProps = {
+  level: undefined,
+  label: '',
+};
+
 export const styles = StyleSheet.create({
   circleContainer: {
     alignItems: 'center',
@@ -43,6 +51,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
   },
+  insufficient: {},
   severe: {
     backgroundColor: Ratings.severeColor,
   },

@@ -4,12 +4,26 @@ import { UPDATE_WATER_COMPLETE } from './Actions';
 
 const initialState = {};
 
+const map = {
+  "Fishing: *dis oxy": "Dissolved oxygen",
+  "Fishing: pH": "pH",
+  "Swimming: Solids": "Total suspended solids",
+  "Farm Impact: Nitrogen": "Nitrogen",
+  "Farm Impact: Phosphorus": "Phosphorus",
+  "Mining Impact: Iron": "Iron",
+  "Mining Impact: Manganese": "Manganese",
+  "Mining Impact: Sulfate": "Sulfate",
+  "Urban Impact: Sp Conduct": "Specific conductance",
+  "Urban Impact: Chlorides": "Chloride"
+};
+
 const processCharacteristics = rawCharacteristics => {
   const updated = {};
   rawCharacteristics.forEach(characteristic => {
-    const key = slug(characteristic.characteristic.toLowerCase());
+    const mappedName = map[characteristic.characteristic];
+    const key = slug(mappedName.toLowerCase());
     updated[key] = {
-      name: characteristic.characteristic,
+      name: mappedName,
       count: characteristic.count,
       median: characteristic.median,
     };

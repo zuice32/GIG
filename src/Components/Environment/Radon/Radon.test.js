@@ -1,5 +1,5 @@
 import React from 'react';
-import Radon from './Radon';
+import { Radon } from './Radon';
 
 import renderer from 'react-test-renderer';
 
