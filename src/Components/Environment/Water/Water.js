@@ -17,8 +17,6 @@ class Water extends Component {
     tabBarVisible: false,
   }
   render() {
-    console.log(this.props["dissolved-oxygen"]);
-    console.log(typeof(this.props["dissolved-oxygen"]));
     return (
       <Content>
         <Content padder>
@@ -48,8 +46,8 @@ class Water extends Component {
               severeLevel={20}
               warningLevel={5} />
             <Circle
-              level={this.props.ph.median}
-              label={this.props.ph.name}
+              level={this.props.bacteria.median}
+              label={this.props.bacteria.name}
               severeLevel={400}
               warningLevel={200} />
           </View>
@@ -119,7 +117,6 @@ export const styles = StyleSheet.create({
   list: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-around',
     marginTop: 10,
   },
@@ -127,6 +124,7 @@ export const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   location: state.water.location,
+  bacteria: state.water.characteristics.bacteria,
   chloride: state.water.characteristics.chloride,
   "dissolved-oxygen": state.water.characteristics["dissolved-oxygen"],
   iron: state.water.characteristics.iron,

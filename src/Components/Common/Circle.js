@@ -10,10 +10,13 @@ export default class Circle extends Component {
 
   render() {
     let resultStyle = styles.good;
-    if (this.props.level === undefined) {
+    let text = this.props.level.toFixed(2);
+
+    if (this.props.level === -1) {
       resultStyle = styles.insufficient;
+      text = 'No data';
     }
-    if (this.props.level > this.props.severeLevel) {
+    else if (this.props.level > this.props.severeLevel) {
       resultStyle = styles.severe;
     }
     else if (this.props.level > this.props.warningLevel) {
@@ -22,8 +25,12 @@ export default class Circle extends Component {
 
     return (
       <View style={styles.circleContainer}>
-        <Text style={[styles.result, resultStyle]}>{this.props.level.toFixed(2)}</Text>
-        <Text style={styles.label}>{this.props.label}</Text>
+        <View style={styles.circle}>
+          <View style={[styles.result, resultStyle]}>
+            <Text style={styles.text}>{text}</Text>
+          </View>
+          <Text style={styles.label}>{this.props.label}</Text>
+        </View>
       </View>
     );
   }
@@ -31,25 +38,37 @@ export default class Circle extends Component {
 }
 
 Circle.defaultProps = {
-  level: undefined,
+  level: -1,
   label: '',
+};
+
+Circle.propTypes = {
+  level: PropTypes.number,
+  severeLevel: PropTypes.number,
+  warningLevel: PropTypes.number,
 };
 
 export const styles = StyleSheet.create({
   circleContainer: {
-    alignItems: 'center',
     flexGrow: 1,
     flexBasis: 0,
   },
+  circle: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   result: {
     backgroundColor: Ratings.insufficientColor,
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    fontSize: 20,
-    color: 'white',
+    height: 90,
+    maxHeight: 90,
+    width: 90,
+    borderRadius: 45,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column',
   },
   insufficient: {},
   severe: {
@@ -57,15 +76,16 @@ export const styles = StyleSheet.create({
   },
   warning: {
     backgroundColor: Ratings.warningColor,
-    color: '#000',
   },
   good: {
     backgroundColor: Ratings.goodColor,
   },
+  text: {
+    color: '#fff',
+  },
+  label: {
+    fontSize: 12,
+    maxWidth: 100,
+    textAlign: 'center',
+  },
 });
-
-Circle.propTypes = {
-  level: PropTypes.number,
-  severeLevel: PropTypes.number,
-  warningLevel: PropTypes.number,
-};

@@ -8,6 +8,7 @@ const map = {
   "Fishing: *dis oxy": "Dissolved oxygen",
   "Fishing: pH": "pH",
   "Swimming: Solids": "Total suspended solids",
+  "Swimming: Bacteria": "Bacteria",
   "Farm Impact: Nitrogen": "Nitrogen",
   "Farm Impact: Phosphorus": "Phosphorus",
   "Mining Impact: Iron": "Iron",
@@ -25,7 +26,7 @@ const processCharacteristics = rawCharacteristics => {
     updated[key] = {
       name: mappedName,
       count: characteristic.count,
-      median: characteristic.median,
+      median: characteristic.count > 0 ? characteristic.median : -1,
     };
   })
   return updated;

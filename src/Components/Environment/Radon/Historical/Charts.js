@@ -41,7 +41,6 @@ export default class Charts extends Component {
       return (a.x < b.x) ? -1 : 1;
     });
 
-    console.log(averages);
     const config = {
       title: { text: 'Radon Test Result Averages Since 1990' },
       xAxis: { type: 'Year' },
