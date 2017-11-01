@@ -21,7 +21,7 @@ export default class AppHeader extends Component {
     }
     return (
       <Header>
-        <Left><Location navigate={this.props.navigate} /></Left>
+        <Left><Location navigate={this.props.navigate} autoShow={this.props.autoShowLocation} /></Left>
         <Body><Title>{this.props.title}</Title></Body>
         {right}
       </Header>

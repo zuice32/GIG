@@ -8,11 +8,25 @@ import PropTypes from 'prop-types';
 
 import { updateCoords, updateZip } from '../../Storage/Location/Actions';
 
+
 export class Location extends Component {
+  actionSheetConfig = {
+    options: ["Use Current Location", "Set a Zip Code", "Cancel"],
+    cancelButtonIndex: 2,
+    title: "Set your location"
+  };
   constructor(props) {
     super(props);
 
     this.getLocation = this.getLocation.bind(this);
+    this.showSheet = this.showSheet.bind(this);
+    this.handleActionSheetClick = this.handleActionSheetClick.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.autoShow) {
+      this.showSheet();
+    }
   }
 
   async getLocation() {
@@ -29,23 +43,26 @@ export class Location extends Component {
     });
   }
 
+  showSheet() {
+    if (this.actionSheet) {
+      this.actionSheet._root.showActionSheet(this.actionSheetConfig, this.handleActionSheetClick);
+    }
+  }
+  handleActionSheetClick(buttonIndex) {
+    switch(buttonIndex) {
+      case '0': console.log('in 0');this.getLocation();break;
+      case '1': console.log('in 1');this.props.navigate('Zip'); break;
+      case '2': console.log('in 2'); break;
+      default: console.log('in default'); break;
+    }
+  };
+
   render() {
     return (
       <Button light bordered
-        onPress={() => ActionSheet.show({
-          options: ["Use Current Location", "Set a Zip Code", "Cancel"],
-          cancelButtonIndex: 2,
-          title: "Set your location"
-        },
-        (buttonIndex) => {
-          switch(buttonIndex) {
-            case '0': console.log('in 0');this.getLocation();break;
-            case '1': console.log('in 1');this.props.navigate('Zip'); break;
-            case '2': console.log('in 2'); break;
-            default: console.log('in default'); break;
-          }
-        })}
+        onPress={this.showSheet}
       >
+      <ActionSheet ref={(c) => { this.actionSheet = c; }} />
         <Icon name="pin" />
       </Button>
     )

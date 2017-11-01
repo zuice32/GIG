@@ -42,7 +42,7 @@ class Unloaded extends Component {
     const { navigate } = this.props.navigation
     return (
       <Container style={styles.container}>
-        <Header title={'Getting Started'} showDrawer={false} navigate={navigate} />
+        <Header title={'Getting Started'} showDrawer={false} navigate={navigate} autoShowLocation={true} />
       </Container>
     );
   }
