@@ -30,6 +30,7 @@ it('returns a default state with none provided', () => {
   expect(newState).toEqual({
     zip: undefined,
     coords: undefined,
+    provided: false,
   });
 });
 

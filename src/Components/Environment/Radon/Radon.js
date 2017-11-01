@@ -5,6 +5,7 @@ import {
   H1, Content,
 } from 'native-base';
 import PropTypes from 'prop-types';
+import { AppLoading } from 'expo';
 
 import Results from './Results';
 import Historical from './Historical';
@@ -15,6 +16,9 @@ export class Radon extends Component {
     tabBarVisible: false,
   }
   render() {
+    if (!this.props.loaded) {
+      return <AppLoading />;
+    }
     const historical = this.props.historical ? <Historical historical={this.props.historical} /> : null;
     return (
       <Content>
@@ -30,6 +34,7 @@ export class Radon extends Component {
 }
 
 Radon.propTypes = {
+  loaded: PropTypes.bool,
   zip: PropTypes.string,
   level: PropTypes.number,
 };
@@ -42,6 +47,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
+  loaded: state.radon.loaded,
   zip: state.location.zip,
   level: state.radon.level,
   historical: state.radon.historicalAverages,

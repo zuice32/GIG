@@ -17,6 +17,7 @@ import Api from '../Api';
 
 export const updateZipCodeFn = function* updateZipCode(action) {
   try {
+    console.log('updateZipCodeFn');
     const coords = yield call(Api.Location.coordinatesFromZip, action.zip);
     yield call(coordsDataUpdatesFn, coords);
     yield call(zipDataUpdatesFn, zip);
@@ -28,6 +29,9 @@ export const updateZipCodeFn = function* updateZipCode(action) {
 
 export const updateCoordsFn = function* updateCoords(action) {
   try {
+    console.log('updateCoordsFn');
+    action.coords.latitude = 40.8878;
+    action.coords.longitude = -80.3343;
     const zip = yield call(Api.Location.zipFromCoordinates, action.coords.latitude, action.coords.longitude);
     yield call(zipDataUpdatesFn, zip);
 

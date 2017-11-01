@@ -43,7 +43,6 @@ export default class App extends Component {
 
     return (
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
           <Root>
             <Drawer
               ref={(ref) => { this.drawer = ref; }}
@@ -55,8 +54,24 @@ export default class App extends Component {
               />
             </Drawer>
           </Root>
-        </PersistGate>
       </Provider>
     );
+    // return (
+    //   <Provider store={store}>
+    //     <PersistGate persistor={persistor}>
+    //       <Root>
+    //         <Drawer
+    //           ref={(ref) => { this.drawer = ref; }}
+    //           content={<Sidebar closeDrawer={closeDrawer} dispatch={dispatchNavigateAction} />}
+    //           onClose={closeDrawer}>
+    //           <AppNavigator
+    //             ref={(ref) => { this.nav = ref; }}
+    //             screenProps={{ openDrawer }}
+    //           />
+    //         </Drawer>
+    //       </Root>
+    //     </PersistGate>
+    //   </Provider>
+    // );
   }
 };

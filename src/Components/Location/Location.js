@@ -39,7 +39,7 @@ export class Location extends Component {
         },
         (buttonIndex) => {
           switch(buttonIndex) {
-            case '0': console.log('in 0');break;
+            case '0': console.log('in 0');this.getLocation();break;
             case '1': console.log('in 1');this.props.navigate('Zip'); break;
             case '2': console.log('in 2'); break;
             default: console.log('in default'); break;

@@ -7,6 +7,7 @@ import {
   H1, H2,
   View,
 } from 'native-base';
+import { AppLoading } from 'expo';
 
 import Circle from '../../Common/Circle';
 import Location from './Location';
@@ -17,6 +18,10 @@ class Water extends Component {
     tabBarVisible: false,
   }
   render() {
+    console.log('water props', this.props);
+    if (!this.props.loaded) {
+      return <AppLoading />;
+    }
     return (
       <Content>
         <Content padder>
@@ -123,6 +128,7 @@ export const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  loaded: state.water.loaded,
   location: state.water.location,
   bacteria: state.water.characteristics.bacteria,
   chloride: state.water.characteristics.chloride,

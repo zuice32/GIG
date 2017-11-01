@@ -2,7 +2,7 @@ import slug from 'slug';
 
 import { UPDATE_WATER_COMPLETE } from './Actions';
 
-const initialState = {};
+const initialState = { loaded: false, characteristics: [] };
 
 const map = {
   "Fishing: *dis oxy": "Dissolved oxygen",
@@ -36,6 +36,7 @@ const water = (state = initialState, action = {}) => {
   switch (action.type) {
     case UPDATE_WATER_COMPLETE:
       return {
+        loaded: true,
         characteristics: processCharacteristics(action.newData.characteristics),
         location: action.newData.location_name,
         year: action.newData.year,

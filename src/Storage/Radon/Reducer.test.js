@@ -2,7 +2,7 @@ import radon from './Reducer';
 import { UPDATE_RADON_COMPLETE } from './Actions';
 
 it('returns a default', () => {
-  const correct = {};
+  const correct = { loaded: false };
 
   expect(radon()).toEqual(correct);
 });
@@ -29,6 +29,7 @@ it('processes properly', () => {
   };
 
   const correct = {
+    "loaded": true,
     "average":0.94,
     "minimum":0.5,
     "maximum":1.6,
