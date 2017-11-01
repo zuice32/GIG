@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import { Root, Drawer } from 'native-base';
 
 import { StackNavigator, addNavigationHelpers, DrawerNavigator } from 'react-navigation';
@@ -9,7 +10,7 @@ import Sidebar from './src/Components/Sidebar/Sidebar';
 
 import AppNavigator from './src/Navigators/AppNavigator';
 
-import store from './src/Storage';
+import {persistor, store } from './src/Storage';
 
 export default class App extends Component {
   state = { isReady: false };
@@ -42,17 +43,19 @@ export default class App extends Component {
 
     return (
       <Provider store={store}>
-        <Root>
-          <Drawer
-            ref={(ref) => { this.drawer = ref; }}
-            content={<Sidebar closeDrawer={closeDrawer} dispatch={dispatchNavigateAction} />}
-            onClose={closeDrawer}>
-            <AppNavigator
-              ref={(ref) => { this.nav = ref; }}
-              screenProps={{ openDrawer }}
-            />
-          </Drawer>
-        </Root>
+        <PersistGate persistor={persistor}>
+          <Root>
+            <Drawer
+              ref={(ref) => { this.drawer = ref; }}
+              content={<Sidebar closeDrawer={closeDrawer} dispatch={dispatchNavigateAction} />}
+              onClose={closeDrawer}>
+              <AppNavigator
+                ref={(ref) => { this.nav = ref; }}
+                screenProps={{ openDrawer }}
+              />
+            </Drawer>
+          </Root>
+        </PersistGate>
       </Provider>
     );
   }

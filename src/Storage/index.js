@@ -1,3 +1,4 @@
+import { persistStore } from 'redux-persist';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -6,7 +7,8 @@ import reducer from './Reducers';
 import sagaManager from '../Sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
+
+export const store = createStore(
   reducer,
   {
     location: {
@@ -49,4 +51,6 @@ const store = createStore(
 );
 sagaMiddleware.run(sagaManager);
 
-export default store;
+export const persistor = persistStore(store);
+
+// export default store;

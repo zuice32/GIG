@@ -15,12 +15,13 @@ export class Radon extends Component {
     tabBarVisible: false,
   }
   render() {
+    const historical = this.props.historical ? <Historical historical={this.props.historical} /> : null;
     return (
       <Content>
         <Content padder>
           <H1 style={styles.title}>Average Radon Test Results for {this.props.zip}</H1>
           <Results level={this.props.level} />
-          <Historical historical={this.props.historical} />
+          {historical}
         </Content>
         <MoreInformation />
       </Content>

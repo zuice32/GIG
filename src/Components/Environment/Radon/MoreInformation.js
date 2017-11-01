@@ -16,7 +16,7 @@ export default class MoreInformation extends Component {
           </Left>
           <Body>
             <Link url={'tel:8002372366'}>
-              <Text>PADEP Radon Hotline - 800-237-2366</Text>
+              <Text>Radon Hotline - 800-237-2366</Text>
             </Link>
           </Body>
         </ListItem>
