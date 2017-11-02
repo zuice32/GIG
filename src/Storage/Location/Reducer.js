@@ -9,6 +9,7 @@ const initialState = {
 const location = (state = initialState, action = {}) => {
   switch (action.type) {
     case SYNC_ZIP:
+      console.log('updating zip');
       return { ...state, zip: action.zip, provided: true };
     case SYNC_COORDS:
       return { ...state, coords: action.coords, provided: true };

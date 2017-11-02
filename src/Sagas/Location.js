@@ -20,10 +20,10 @@ export const updateZipCodeFn = function* updateZipCode(action) {
     console.log('updateZipCodeFn');
     const coords = yield call(Api.Location.coordinatesFromZip, action.zip);
     yield call(coordsDataUpdatesFn, coords);
-    yield call(zipDataUpdatesFn, zip);
+    yield call(zipDataUpdatesFn, action.zip);
   }
   catch (e) {
-
+    console.log(e);
   }
 }
 

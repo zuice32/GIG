@@ -19,6 +19,7 @@ class ZipForm extends Component {
     this.onChangeText = this.onChangeText.bind(this);
     this.onEndEditing = this.onEndEditing.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.useGeolocation = this.useGeolocation.bind(this);
 
     this.state = {
@@ -36,16 +37,17 @@ class ZipForm extends Component {
   }
 
   onSubmit() {
-    // onSubmitEditing for the input, and for the button's press action.
-
+    this.props.updateZipCode(this.state.zip);
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.back({ routeName: 'Main' }),
+      ]
+    }));
   }
 
   showErrorMessage() {
     this.setState({ showError: true });
-  }
-
-  submitZip() {
-
   }
 
   trackInput(input) {
@@ -89,10 +91,14 @@ class ZipForm extends Component {
                   getRef={this.trackInput}
                   onChangeText={this.onChangeText}
                   onEndEditing={this.onEndEditing}
+                  onSubmitEditing={this.onSubmit}
                   onFocus={this.onFocus}
                   />
               </Item>
-              <Button block primary><Text>Use this zip code</Text></Button>
+              <Button block primary disabled={this.state.showError && this.state.zip.length > 0} onPress={this.onSubmit}>
+                <Text>Use this zip code</Text>
+
+              </Button>
               <Button block primary style={styles.locationAlternate} onPress={this.useGeolocation}>
                 <Text>Use current location instead</Text>
             </Button>
