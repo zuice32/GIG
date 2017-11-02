@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
-import { Container } from 'native-base';
+import { Container, Body, Content, Text } from 'native-base';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
@@ -42,7 +42,12 @@ class Unloaded extends Component {
     const { navigate } = this.props.navigation
     return (
       <Container style={styles.container}>
-        <Header title={'Getting Started'} showDrawer={false} navigate={navigate} autoShowLocation={true} />
+        <Header title={'Welcome'} showDrawer={false} navigate={navigate} autoShowLocation={true} />
+        <Body style={styles.mainContent}>
+          <Text style={styles.text}>
+            To begin, please enter your location using the button in the upper left.
+          </Text>
+        </Body>
       </Container>
     );
   }
@@ -56,6 +61,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
   },
+  mainContent: {
+    alignItems: 'center',
+  },
+  text: {
+    marginTop: 100,
+    textAlign: 'center',
+  }
 });
 
 const mapStateToProps = state => ({

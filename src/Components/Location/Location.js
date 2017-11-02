@@ -49,17 +49,18 @@ export class Location extends Component {
     }
   }
   handleActionSheetClick(buttonIndex) {
-    switch(buttonIndex) {
-      case '0': console.log('in 0');this.getLocation();break;
-      case '1': console.log('in 1');this.props.navigate('Zip'); break;
-      case '2': console.log('in 2'); break;
-      default: console.log('in default'); break;
+    switch(buttonIndex.toString()) { // Android sends strings, iOS sends Num
+      case '0': this.getLocation();break;
+      case '1': this.props.navigate('Zip'); break;
+      case '2': break;
+      default: break;
     }
   };
 
   render() {
+    const highlightButton = !this.props.locationProvided;
     return (
-      <Button light bordered
+      <Button info={highlightButton} transparent={!highlightButton}
         onPress={this.showSheet}
       >
       <ActionSheet ref={(c) => { this.actionSheet = c; }} />
@@ -75,8 +76,12 @@ Location.propTypes = {
   updateZipCode: PropTypes.func,
 };
 
+const mapStateToProps = state => ({
+  locationProvided: state.location.provided,
+});
+
 const mapDispatchToProps = dispatch => ({
   updateLatLong: coords => dispatch(updateCoords(coords)),
   updateZipCode: zip => dispatch(updateZip(zip)),
 });
-export default connect(undefined, mapDispatchToProps)(Location);
+export default connect(mapStateToProps, mapDispatchToProps)(Location);
