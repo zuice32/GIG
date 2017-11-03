@@ -59,14 +59,20 @@ export class Location extends Component {
 
   render() {
     const highlightButton = !this.props.locationProvided;
+    if (highlightButton) {
+      return (
+        <Button info onPress={this.showSheet}>
+          <ActionSheet ref={(c) => { this.actionSheet = c; }} />
+          <Icon name="pin" />
+        </Button>
+      );
+    }
     return (
-      <Button info={highlightButton} transparent={!highlightButton}
-        onPress={this.showSheet}
-      >
-      <ActionSheet ref={(c) => { this.actionSheet = c; }} />
+      <Button primary onPress={this.showSheet}>
+        <ActionSheet ref={(c) => { this.actionSheet = c; }} />
         <Icon name="pin" />
       </Button>
-    )
+    );
   }
 
 }
