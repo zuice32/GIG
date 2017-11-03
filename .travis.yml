@@ -1,6 +1,0 @@
-language: node_js
-node_js:
-  - "node"
-cache: yarn
-script:
-  - if [[ -z "$TRAVIS_PULL_REQUEST" || $TRAVIS_PULL_REQUEST == "false" ]] && [[ -z "$TRAVIS_BRANCH" || $TRAVIS_BRANCH == "master" ]]; then yarn appr; fi
